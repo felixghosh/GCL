@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(){
-    tree_set_t* set = new_tree_set((void*)3);
+    tree_set_t* set = new_tree_set((void*)3, NULL);
     insert_tree_set(set, (void*)2);
     insert_tree_set(set, (void*)5);
     insert_tree_set(set, (void*)1);
@@ -20,7 +20,7 @@ int main(){
     printf("Tree contains 3: %s\n", contains_tree_set(set, (void*)3) ? "True" : "False");
     
 
-    
+
     free_tree_set(set);
     return 0;
 }

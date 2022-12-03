@@ -2,11 +2,28 @@
 #include <stdio.h>
 #include "tree_set.h"
 
-tree_set_t* new_tree_set(void* data){
+int default_cmp(void* d1, void* d2){
+    if(d1 < d2)
+        return -1;
+    else if(d1 == d2)
+        return 0;
+    else if(d1 > d2)
+        return 1; 
+    else{
+        printf("ERROR IN CMP FUNCTION!\n");
+        exit(1);
+    }
+}
+
+tree_set_t* new_tree_set(void* data, int (*cmp)(void*, void*)){
     tree_set_t* set = malloc(sizeof(tree_set_t));
     set->left = NULL;
     set->right = NULL;
     set->data = data;
+    if(cmp != NULL)
+        set->cmp = cmp;
+    else
+        set->cmp = &default_cmp;
 
     return set;
 }
@@ -22,20 +39,26 @@ void free_tree_set(tree_set_t* set){
 void insert_tree_set(tree_set_t* set, void* data){
     if(set->data == NULL){
         set->data = data;
-    } else if(data < set->data){
-        if(set->left == NULL)
-            set->left = new_tree_set(data);
-        else
-            insert_tree_set(set->left, data);
-    } else if( data > set->data){
-        if(set->right == NULL)
-            set->right = new_tree_set(data);
-        else
-            insert_tree_set(set->right, data);
-    } else {
-        //value already in tree
-        return;
+    }else{
+        int comp = set->cmp(data, set->data);
+        if(comp < 0){
+            //smaller
+            if(set->left == NULL)
+                set->left = new_tree_set(data, set->cmp);
+            else
+                insert_tree_set(set->left, data);
+        } else if(comp > 0){
+            //bigger
+            if(set->right == NULL)
+                set->right = new_tree_set(data, set->cmp);
+            else
+                insert_tree_set(set->right, data);
+        } else {
+            //value equal => value already in tree
+            return;
+        }
     }
+    
 }
 
 
@@ -51,7 +74,8 @@ void remove_tree_set(tree_set_t* set, void* data){
     if(!contains_tree_set(set, data))
         return;
 
-    if(data < set->data){
+    int comp = set->cmp(data, set->data);
+    if(comp < 0){
         if(set->left != NULL){
             if(set->left->data == data){
                 //remove
@@ -64,7 +88,7 @@ void remove_tree_set(tree_set_t* set, void* data){
             }
 
         }
-    } else if(data > set->data){
+    } else if(comp > 0){
         if(set->right != NULL){
             if(set->right->data == data){
                 //remove
@@ -78,7 +102,7 @@ void remove_tree_set(tree_set_t* set, void* data){
         }
     } else {
         //Root node needs to be deleted
-        tree_set_t* new_root = new_tree_set(NULL);
+        tree_set_t* new_root = new_tree_set(NULL, set->cmp);
         re_add_rec(set->left, new_root);
         re_add_rec(set->right, new_root);
         *set = *new_root;
@@ -86,12 +110,16 @@ void remove_tree_set(tree_set_t* set, void* data){
 }
 
 bool contains_tree_set(tree_set_t* set, void* data){
-    if(data < set->data){
+    if(set->data == NULL)
+        return false;
+    
+    int comp = set->cmp(data, set->data);
+    if(comp < 0){
         if(set->left == NULL)
             return false;
         else
             contains_tree_set(set->left, data);
-    } else if( data > set->data){
+    } else if(comp > 0){
         if(set->right == NULL)
             return false;
         else
