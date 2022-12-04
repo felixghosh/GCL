@@ -33,5 +33,6 @@ int main(){
 
 
     free_tree_set(set);
+    free_tree_set(str_set);
     return 0;
 }

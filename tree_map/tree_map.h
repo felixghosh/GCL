@@ -9,17 +9,17 @@ typedef struct entry_t{
 }entry_t;
 
 typedef struct tree_map_t{
-    struct tree_set_t* left;
-    struct tree_set_t* right;
+    struct tree_map_t* left;
+    struct tree_map_t* right;
     entry_t entry;
     int (*cmp)(void*, void*);
 }tree_map_t;
 
 tree_map_t* new_tree_map(void* key, void* value, int (*cmp)(void*, void*));
 void free_tree_map(tree_map_t* map);
-void insert_tree_map(tree_map_t* map);
-void remove_tree_map(tree_map_t* map);
-bool contains_tree_map(tree_map_t* map);
+void insert_tree_map(tree_map_t* map, void* key, void* value);
+void remove_tree_map(tree_map_t* map, void* key);
+bool contains_tree_map(tree_map_t* map, void* key);
 void print_tree_map(tree_map_t* map, const char* format);
 void* get_tree_map(tree_map_t* map, void* key);
 

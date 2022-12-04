@@ -58,7 +58,6 @@ void insert_tree_set(tree_set_t* set, void* data){
             return;
         }
     }
-    
 }
 
 
