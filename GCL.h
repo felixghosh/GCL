@@ -7,6 +7,10 @@
 //This is a library of some useful data structures for use in other programs
 
 
+//util
+int compstring(void* d1, void* d2);
+
+
 //linked_list
 typedef struct linked_list_t{
 	struct linked_list_t* next;

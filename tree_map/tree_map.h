@@ -2,6 +2,7 @@
 #define TREE_MAP_H
 
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct entry_t{
     void* key;
