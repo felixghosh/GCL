@@ -15,7 +15,7 @@ void free_tree_set(tree_set_t* set);
 void insert_tree_set(tree_set_t* set, void* data);
 void remove_tree_set(tree_set_t* set, void* data);
 bool contains_tree_set(tree_set_t* set, void* data);
-void print_tree_set(tree_set_t* set);
+void print_tree_set(tree_set_t* set, const char* format);
 
 
 #endif

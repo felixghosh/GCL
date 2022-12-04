@@ -1,5 +1,6 @@
 #include "tree_set.h"
 #include <stdio.h>
+#include <string.h>
 
 int main(){
     tree_set_t* set = new_tree_set((void*)3, NULL);
@@ -10,15 +11,25 @@ int main(){
     insert_tree_set(set, (void*)6);
     insert_tree_set(set, (void*)4);
     insert_tree_set(set, (void*)3);
-    print_tree_set(set);
+    print_tree_set(set, "%d\n");
     printf("Tree contains 3: %s\n", contains_tree_set(set, (void*)3) ? "True" : "False");
     remove_tree_set(set, (void*)5);
-    print_tree_set(set);
+    print_tree_set(set, "%d\n");
     printf("Tree contains 5: %s\n", contains_tree_set(set, (void*)5) ? "True" : "False");
     remove_tree_set(set, (void*)3);
-    print_tree_set(set);
+    print_tree_set(set, "%d\n");
     printf("Tree contains 3: %s\n", contains_tree_set(set, (void*)3) ? "True" : "False");
     
+    tree_set_t* str_set = new_tree_set((void*)"hej", &strcmp);
+    print_tree_set(str_set, "%s\n");
+    insert_tree_set(str_set, (void*)"hej");
+    print_tree_set(str_set, "%s\n");
+    insert_tree_set(str_set, (void*)"hejdå");
+    insert_tree_set(str_set, (void*)"he");
+    insert_tree_set(str_set, (void*)"h");
+    insert_tree_set(str_set, (void*)"hejdå!");
+    print_tree_set(str_set, "%s\n");
+    printf("Tree contains hej: %s\n", contains_tree_set(str_set, (void*)"hej") ? "True" : "False");
 
 
     free_tree_set(set);

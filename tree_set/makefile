@@ -1,3 +1,3 @@
 default:
-	gcc -O3 test.c tree_set.c
+	gcc -g test.c tree_set.c
 	./a.out
