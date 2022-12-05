@@ -129,18 +129,36 @@ bool contains_tree_set(tree_set_t* set, void* data){
     }
 }
 
-static void print_rec(tree_set_t* set, int level, const char* format){
+static void print_structure_rec(tree_set_t* set, int level, const char* format){
     if(set != NULL){
         if(set->data != NULL){
             for(int i = 0; i < level; i++)
                 printf("  ");
             printf(format, set->data);
-            print_rec(set->right, level+1, format);
-            print_rec(set->left, level+1, format);
+            printf("\n");
+            print_structure_rec(set->right, level+1, format);
+            print_structure_rec(set->left, level+1, format);
+        }
+    }
+}
+
+void print_structure_tree_set(tree_set_t* set, const char* format){
+    print_structure_rec(set, 0, format);
+}
+
+static void print_rec(tree_set_t* set, const char* format){
+    if(set != NULL){
+        if(set->data != NULL){
+            printf(format, set->data);
+            printf(" ");
+            print_rec(set->right, format);
+            print_rec(set->left, format);
         }
     }
 }
 
 void print_tree_set(tree_set_t* set, const char* format){
-    print_rec(set, 0, format);
+    printf("{ ");
+    print_rec(set, format);
+    printf("}\n");
 }

@@ -40,6 +40,7 @@ void insert_tree_set(tree_set_t* set, void* data);
 void remove_tree_set(tree_set_t* set, void* data);
 bool contains_tree_set(tree_set_t* set, void* data);
 void print_tree_set(tree_set_t* set, const char* format);
+void print_structure_tree_set(tree_set_t* set, const char* format);
 
 
 //tree_map
@@ -61,6 +62,7 @@ void insert_tree_map(tree_map_t* map, void* key, void* value);
 void remove_tree_map(tree_map_t* map, void* key);
 bool contains_tree_map(tree_map_t* map, void* key);
 void print_tree_map(tree_map_t* map, const char* format);
+void print_structure_tree_map(tree_map_t* map, const char* format);
 void* get_tree_map(tree_map_t* map, void* key);
 
 #endif

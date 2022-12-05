@@ -130,20 +130,38 @@ bool contains_tree_map(tree_map_t* map, void* key){
     }
 }
 
-static void print_rec(tree_map_t* map, int level, const char* format){
+static void print_structure_rec(tree_map_t* map, int level, const char* format){
     if(map != NULL){
         if(map->entry.key != NULL){
             for(int i = 0; i < level; i++)
                 printf("  ");
             printf(format, map->entry.key, map->entry.value);
-            print_rec(map->right, level+1, format);
-            print_rec(map->left, level+1, format);
+            printf("\n");
+            print_structure_rec(map->right, level+1, format);
+            print_structure_rec(map->left, level+1, format);
+        }
+    }
+}
+
+void print_structure_tree_map(tree_map_t* map, const char* format){
+    print_structure_rec(map, 0, format);
+}
+
+static void print_rec(tree_map_t* map, const char* format){
+    if(map != NULL){
+        if(map->entry.key != NULL){
+            printf(format, map->entry.key, map->entry.value);
+            printf(" ");
+            print_rec(map->right, format);
+            print_rec(map->left, format);
         }
     }
 }
 
 void print_tree_map(tree_map_t* map, const char* format){
-    print_rec(map, 0, format);
+    printf("{ ");
+    print_rec(map, format);
+    printf("}\n");
 }
 
 void* get_tree_map(tree_map_t* map, void* key){
