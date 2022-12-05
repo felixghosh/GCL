@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "tree_map.h"
 
-int default_cmp(void* d1, void* d2){
+static int default_cmp(void* d1, void* d2){
     if(d1 < d2)
         return -1;
     else if(d1 == d2)
@@ -62,7 +62,7 @@ void insert_tree_map(tree_map_t* map, void* key, void* value){
     }
 }
 
-void re_add_rec(tree_map_t* add, tree_map_t* orig){
+static void re_add_rec(tree_map_t* add, tree_map_t* orig){
     if(add != NULL){
         insert_tree_map(orig, add->entry.key, add->entry.value);
         re_add_rec(add->left, orig);
@@ -130,7 +130,7 @@ bool contains_tree_map(tree_map_t* map, void* key){
     }
 }
 
-void print_rec(tree_map_t* map, int level, const char* format){
+static void print_rec(tree_map_t* map, int level, const char* format){
     if(map != NULL){
         if(map->entry.key != NULL){
             for(int i = 0; i < level; i++)
