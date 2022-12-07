@@ -7,15 +7,18 @@ int main(){
     print_tree_map(map, "{%d: %d}");
     insert_tree_map(map, (void*)3, (void*)3);
     print_tree_map(map, "{%d: %d}");
+    int value = get_tree_map(map, (void*)3);
+    printf("get(3) gives: %d\n", value);
     printf("map contains 3: %s\n", contains_tree_map(map, (void*)3) ? "True" : "False");
     remove_tree_map(map, (void*)3);
     print_tree_map(map, "{%d: %d}");
     printf("map contains 3: %s\n", contains_tree_map(map, (void*)3) ? "True" : "False");
-    int value = get_tree_map(map, (void*)2);
-    printf("get(2) gives: %d\n", value);
+    
 
     tree_map_t* route = new_tree_map((void*)"/about", "something", &strcmp);
+    insert_tree_map(route, (void*)"/help", (void*)"something else");
     printf("/about gives: %s\n", get_tree_map(route, (void*)"/about"));
+    printf("/help gives: %s\n", get_tree_map(route, (void*)"/help"));
 
     free_tree_map(map);
     return 0;

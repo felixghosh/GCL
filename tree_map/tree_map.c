@@ -173,12 +173,12 @@ void* get_tree_map(tree_map_t* map, void* key){
         if(map->left == NULL)
             return NULL;
         else
-            contains_tree_map(map->left, key);
+            get_tree_map(map->left, key);
     } else if(comp > 0){
         if(map->right == NULL)
             return NULL;
         else
-            contains_tree_map(map->right, key);
+            get_tree_map(map->right, key);
     } else {
         //key found
         return map->entry.value;
