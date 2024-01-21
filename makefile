@@ -22,3 +22,7 @@ tree_map:
 
 mem:
 	gcc $(FLAGS) -c src/mem.c -I $(INCLUDES) -o obj/mem.o
+
+test_mem: mem
+	gcc $(FLAGS) test/test_mem.c obj/mem.o -I $(INCLUDES) -o test/a.out
+	test/a.out
