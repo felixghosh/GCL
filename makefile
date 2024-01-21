@@ -1,14 +1,24 @@
-static_lib: linked_list.o tree_set.o tree_map.o util.o
-	ar rcs libGCL.a obj/linked_list.o obj/tree_set.o obj/tree_map.o obj/util.o
+INCLUDES = include
+FILES = src/mem.c
+FLAGS = -Wall -Wextra -pedantic
+OBJECTS = mem linked_list tree_set tree_map
+# OBJECTFILES = obj/linked_list.o obj/tree_set.o obj/tree_map.o obj/mem.o
+OBJECTFILES = obj/*
 
-linked_list.o:
-	gcc -O3 -c linked_list/linked_list.c -o obj/linked_list.o
+all: $(OBJECTS)
+	echo "Compiled all object-files successfully"
 
-tree_set.o:
-	gcc -O3 -c tree_set/tree_set.c -o obj/tree_set.o
+static_lib: $(OBJECTS)
+	ar rcs libgcl.a $(OBJECTFILES)
 
-tree_map.o:
-	gcc -O3 -c tree_map/tree_map.c -o obj/tree_map.o
+linked_list:
+	gcc $(FLAGS) -c src/linked_list.c -I $(INCLUDES) -o obj/linked_list.o
 
-util.o:
-	gcc -O3 -c util/util.c -o obj/util.o
+tree_set:
+	gcc $(FLAGS) -c src/tree_set.c -I $(INCLUDES) -o obj/tree_set.o
+
+tree_map:
+	gcc $(FLAGS) -c src/tree_map.c -I $(INCLUDES) -o obj/tree_map.o
+
+mem:
+	gcc $(FLAGS) -c src/mem.c -I $(INCLUDES) -o obj/mem.o

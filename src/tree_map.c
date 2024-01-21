@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "tree_map.h"
 
 static int default_cmp(void* d1, void* d2){
@@ -128,6 +129,7 @@ bool contains_tree_map(tree_map_t* map, void* key){
         //key found
         return true;
     }
+    assert(0);
 }
 
 static void print_structure_rec(tree_map_t* map, int level, const char* format){
@@ -183,4 +185,5 @@ void* get_tree_map(tree_map_t* map, void* key){
         //key found
         return map->entry.value;
     }
+    assert(0);
 }

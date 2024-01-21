@@ -2,9 +2,13 @@
 #include <stdio.h>
 #include "linked_list.h"
 
+
 linked_list_t* new_linked_list(void* data){
 	linked_list_t* p = malloc(sizeof(linked_list_t));
-
+	if(p == NULL){
+		fprintf(stderr, "ERROR: Linked list allocation failed!");
+		return NULL;
+	} 
 	p->next = p;
 	p->prev = p;
 	p->data = data;
@@ -42,7 +46,7 @@ void append_linked_list(linked_list_t** list, void* data){
 	q = malloc(sizeof(linked_list_t));
 	if(q == NULL){
 		printf("ERROR: malloc failed, out of memory!\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	q->data = data;
@@ -64,7 +68,7 @@ void prepend_linked_list(linked_list_t** list, void* data){
 	q = malloc(sizeof(linked_list_t));
 	if(q == NULL){
 		printf("ERROR: malloc failed, out of memory!\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	
 	q->data = data;
@@ -102,7 +106,7 @@ void print_linked_list(linked_list_t* list){
 
 	printf("[ ");
 	do{
-		printf("%d ", list->data);
+		printf("%d ", *(int*)(list->data));
 		list = list->next;
 	}while(list != head);
 	printf("]\n");

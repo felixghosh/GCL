@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "tree_set.h"
 
 static int default_cmp(void* d1, void* d2){
@@ -127,6 +128,7 @@ bool contains_tree_set(tree_set_t* set, void* data){
         //value found
         return true;
     }
+    assert(0);
 }
 
 static void print_structure_rec(tree_set_t* set, int level, const char* format){
