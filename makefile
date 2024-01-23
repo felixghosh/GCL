@@ -1,6 +1,6 @@
 INCLUDES = include
 FILES = src/mem.c
-FLAGS = -Wall -Wextra -pedantic
+FLAGS = -Wall -Wextra -pedantic -fPIC
 OBJECTS = mem linked_list tree_set tree_map
 OBJECTFILES = obj/mem.o obj/linked_list.o obj/tree_set.o obj/tree_map.o
 
