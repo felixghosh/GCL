@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "linked_list.h"
+#include "gcl_linkedlist.h"
 
 int main(){
 	linked_list_t* list = new_linked_list(1);

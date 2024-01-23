@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "tree_set.h"
+#include "gcl_treeset.h"
 
 static int default_cmp(void* d1, void* d2){
     if(d1 < d2)

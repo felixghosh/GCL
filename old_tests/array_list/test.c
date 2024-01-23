@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "array_list.h"
+#include "gcl_arraylist.h"
 
 int main(){
     array_list_t* list = new_array_list(sizeof(int), 10, NULL, (void*)1);

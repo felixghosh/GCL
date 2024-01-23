@@ -1,4 +1,4 @@
-#include "mem.h"
+#include "gcl_mem.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -19,11 +19,10 @@ void *internal_checked_malloc(size_t size, int line, const char *file){
 }
 
 void *internal_checked_realloc(void *ptr, size_t size, int line, const char *file){
-    void *p = ptr;
     ptr = realloc(ptr, size);
     if(ptr == NULL) {
         fprintf(stderr, "ERROR! Checked Realloc returned NULL.\nThis function was called on line:%d in file:%s\nerno: %s\n", line, file, strerror(errno));
-        ptr = p;
+        exit(1);
     }
     return ptr;
 }

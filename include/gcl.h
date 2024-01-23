@@ -5,11 +5,11 @@
 //GCL - Ghosh C Library
 //This is a library of some useful data structures for use in other programs
 
-#include "array_list.h"
-#include "linked_list.h"
-#include "mem.h"
-#include "tree_map.h"
-#include "tree_set.h"
+#include "gcl_arraylist.h"
+#include "gcl_linkedlist.h"
+#include "gcl_mem.h"
+#include "gcl_treemap.h"
+#include "gcl_treeset.h"
 
 
 

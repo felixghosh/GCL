@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "array_list.h"
+#include "gcl_arraylist.h"
 
 static int default_cmp(void* d1, void* d2){
     if(d1 < d2)

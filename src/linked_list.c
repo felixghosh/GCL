@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "linked_list.h"
+#include "gcl_linkedlist.h"
 
 
 linked_list_t* new_linked_list(void* data){
