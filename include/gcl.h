@@ -10,6 +10,7 @@
 #include "gcl_mem.h"
 #include "gcl_treemap.h"
 #include "gcl_treeset.h"
+#include "gcl_string.h"
 
 
 

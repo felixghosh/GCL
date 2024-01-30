@@ -1,8 +1,8 @@
 INCLUDES = include
 FILES = src/mem.c
 FLAGS = -Wall -Wextra -pedantic -fPIC
-OBJECTS = mem linked_list tree_set tree_map
-OBJECTFILES = obj/mem.o obj/linked_list.o obj/tree_set.o obj/tree_map.o
+OBJECTS = mem linked_list tree_set tree_map string
+OBJECTFILES = obj/mem.o obj/linked_list.o obj/tree_set.o obj/tree_map.o obj/string.o
 
 shared_lib: $(OBJECTS)
 	gcc -shared $(OBJECTFILES) -o /usr/lib/libgcl.so $(FLAGS)
@@ -28,3 +28,6 @@ mem:
 test_mem: mem
 	gcc test/test_mem.c obj/mem.o -I $(INCLUDES) -o test/a.out $(FLAGS)
 	test/a.out
+
+string:
+	gcc -c src/string.c -I $(INCLUDES) -o obj/string.o $(FLAGS)
